@@ -1,5 +1,5 @@
 """
-    Project name: JustGet10
+    Project name: Cylindre de Jefferson
     Copyright,
     ALEV Samuel (226430@supinfo.com)
     STOCKMAN Jim (227078@supinfo.com)
