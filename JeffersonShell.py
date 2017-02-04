@@ -42,7 +42,12 @@ def createCylinder(file,n):
             f.write(mix() + "\n")
 
 def loadCylinder(file):
-    pass
+    output = {}
+    with open('test.txt') as f:
+        liste = f.read().splitlines()
+        for i in range(len(liste)):
+            output[i+1] = liste[i]
+    return output
 
 def keyOK(key,n):
     pass
@@ -64,4 +69,5 @@ def cipherText(cylinder,key,text):
 
 print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))
 print(mix())
-createCylinder('test',6)
+#createCylinder('test',6)
+loadCylinder('test')
