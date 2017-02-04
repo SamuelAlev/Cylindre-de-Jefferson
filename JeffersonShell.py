@@ -42,8 +42,14 @@ def createCylinder(file,n):
             f.write(mix() + "\n")
 
 def loadCylinder(file):
+    """
+    Charge un fichier texte nommé en fonction de la variable "file" et le stock sous forme de dictionnaire
+    avec la clé étant le numéro de ligne et la ligne correspondante étant contenu.
+    :param file: Chaine de caractère qui fait office de nom de fichier.
+    :return: Dictionnaire avec la clé étant le numéro de ligne et la ligne correspondante étant contenu.
+    """
     output = {}
-    with open('test.txt') as f:
+    with open(file + ".txt") as f:
         liste = f.read().splitlines()
         for i in range(len(liste)):
             output[i+1] = liste[i]
@@ -67,7 +73,6 @@ def cipherLetter(letter,alphabet):
 def cipherText(cylinder,key,text):
     pass
 
-print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))
-print(mix())
-#createCylinder('test',6)
-loadCylinder('test')
+#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))
+#print(mix())
+#print(loadCylinder('test'))
