@@ -56,10 +56,29 @@ def loadCylinder(file):
     return output
 
 def keyOK(key,n):
-    pass
+    """
+    Vérifie lavalidité d'une clé pour le chiffrage ou déchiffrage du message
+    :param key: Un liste d'entiers positifs compris entre 1 et n
+    :param n: Un entier strictement positif
+    :return:
+    """
+    for x in key:
+        if x < 1 or x > n:
+            print("clé invalide")
+            return False
+    return True
 
 def createKey(n):
-    pass
+    """
+    Génère une clé sous forme d'une liste d'entiers positifs généré aléatoirement
+    et compris entre 1 et n
+    :param n: Limite de la range attribuée
+    :return: retourne la clé sous forme de liste
+    """
+    liste = []
+    for x in range(0,27):
+        liste += [int(random.randrange(1,n))]
+    return liste
 
 def find(letter,alphabet):
     pass
@@ -73,6 +92,6 @@ def cipherLetter(letter,alphabet):
 def cipherText(cylinder,key,text):
     pass
 
-#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))
+#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))   Pourquoi Sam xD
 #print(mix())
 #print(loadCylinder('test'))
