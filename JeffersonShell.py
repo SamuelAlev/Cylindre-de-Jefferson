@@ -83,7 +83,7 @@ def createKey(n):
 def find(letter,alphabet):
     """
     Renvoi la position d'une lettre dans l'alphabet rentré
-    :param letter: lettre rentrée en paramètre
+    :param letter: Lettre rentrée en paramètre
     :param alphabet: Alphabet rentré en paramètre
     :return: Retourne la position dans l'alphabet
     """
@@ -107,7 +107,21 @@ def shift(i):
     return shiffting
 
 def cipherLetter(letter,alphabet):
-    pass
+    """
+    Chiffre le message en décalant la lettre choisie de 6 crans
+    L'opération '%26' est présente pour éviter une sortie de liste
+    :param letter: Lettre rentrée en paramètre
+    :param alphabet: Alphabet rentré en paramètre
+    :return:
+    """
+    upLetter = letter.upper()
+    position = 0
+    for x in alphabet:
+        if x == upLetter:
+            return alphabet[(position + 6) % 26]
+        else:
+            position += 1
+    print("Lettre non présente")
 
 def cipherText(cylinder,key,text):
     pass
