@@ -81,10 +81,30 @@ def createKey(n):
     return liste
 
 def find(letter,alphabet):
-    pass
+    """
+    Renvoi la position d'une lettre dans l'alphabet rentré
+    :param letter: lettre rentrée en paramètre
+    :param alphabet: Alphabet rentré en paramètre
+    :return: Retourne la position dans l'alphabet
+    """
+    upLetter = letter.upper()
+    position = 0
+    for x in alphabet:
+        if x == upLetter:
+            return position
+        else:
+            position += 1
+    print("Lettre non présente")
 
 def shift(i):
-    pass
+    """
+    i est un entier compris entre 0 et 25
+    la fonction retournera i + 6 modulo de 26
+    :param i: L'entier rentré en paramètre
+    :return: retourne le résultat de l'opération
+    """
+    shiffting = (i+6) % 26
+    return shiffting
 
 def cipherLetter(letter,alphabet):
     pass
