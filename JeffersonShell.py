@@ -103,8 +103,7 @@ def shift(i):
     :param i: L'entier rentré en paramètre
     :return: retourne le résultat de l'opération
     """
-    shiffting = (i+6) % 26
-    return shiffting
+    return (i+6) % 26
 
 def cipherLetter(letter,alphabet):
     """
