@@ -6,7 +6,8 @@
     (C) 2016 - 2017
     This script was tested with Python 3.6.0 and PyGame 1.9.2b1
 """
-import re, random
+import random
+import re
 
 
 def convertLetters(text):
@@ -81,17 +82,50 @@ def createKey(n):
     return liste
 
 def find(letter,alphabet):
-    pass
+    """
+    Renvoi la position d'une lettre dans l'alphabet rentré
+    :param letter: Lettre rentrée en paramètre
+    :param alphabet: Alphabet rentré en paramètre
+    :return: Retourne la position dans l'alphabet
+    """
+    upLetter = letter.upper()
+    position = 0
+    for x in alphabet:
+        if x == upLetter:
+            return position
+        else:
+            position += 1
+    print("Lettre non présente")
 
 def shift(i):
-    pass
+    """
+    i est un entier compris entre 0 et 25
+    la fonction retournera i + 6 modulo de 26
+    :param i: Entier rentré en paramètre
+    :return: Retourne le résultat de l'opération
+    """
+    return (i+6) % 26
 
 def cipherLetter(letter,alphabet):
-    pass
+    """
+    Chiffre le message en décalant la lettre choisie de 6 crans
+    L'opération '%26' est présente pour éviter une sortie de liste
+    :param letter: Lettre rentrée en paramètre
+    :param alphabet: Alphabet rentré en paramètre
+    :return:
+    """
+    upLetter = letter.upper()
+    position = 0
+    for x in alphabet:
+        if x == upLetter:
+            return alphabet[shift(position)]
+        else:
+            position += 1
+    print("Lettre non présente")
 
 def cipherText(cylinder,key,text):
     pass
 
-#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))   Pourquoi Sam xD
+#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))   #Pourquoi Sam xD
 #print(mix())
 #print(loadCylinder('test'))
