@@ -125,6 +125,5 @@ def cipherLetter(letter,alphabet):
 def cipherText(cylinder,key,text):
     pass
 
-#print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))   Pourquoi Sam xD
 #print(mix())
 #print(loadCylinder('test'))
