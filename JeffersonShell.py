@@ -101,13 +101,10 @@ def shift(i):
     """
     i est un entier compris entre 0 et 25
     la fonction retournera i + 6 modulo de 26
-<<<<<<< HEAD
     :param i: Entier rentré en paramètre
     :return: Retourne le résultat de l'opération
-=======
     :param i: L'entier rentré en paramètre
     :return: retourne le résultat de l'opération
->>>>>>> origin/master
     """
     return (i+6) % 26
 
@@ -123,11 +120,7 @@ def cipherLetter(letter,alphabet):
     position = 0
     for x in alphabet:
         if x == upLetter:
-<<<<<<< HEAD
             return alphabet[shift(position)]
-=======
-            return alphabet[(position + 6) % 26]
->>>>>>> origin/master
         else:
             position += 1
     print("Lettre non présente")
@@ -135,9 +128,6 @@ def cipherLetter(letter,alphabet):
 def cipherText(cylinder,key,text):
     pass
 
-<<<<<<< HEAD
 #print(convertLetters("Bite c à dudule^$$ù*** â^î-5613.!"))   #Pourquoi Sam xD
-=======
->>>>>>> origin/master
 #print(mix())
 #print(loadCylinder('test'))
