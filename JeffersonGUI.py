@@ -6,7 +6,9 @@
     (C) 2016 - 2017
     This script was tested with Python 3.6.0 and PyGame 1.9.2b1
 """
-
+import pygame
+surface = pygame.display.set_mode((600,800),0,0)
+fps = 60000
 
 def displayCylinder(mySurface,cylinder,i):
     pass
@@ -29,4 +31,8 @@ def rotateCylinders(mySurface,cylinder):
 
 
 def displayAll():
-    pass
+    pygame.display.init()
+    pygame.display.flip()
+    pygame.time.wait(fps)
+
+displayAll()
