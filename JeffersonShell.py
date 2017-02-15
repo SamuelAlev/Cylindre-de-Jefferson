@@ -128,6 +128,25 @@ def cipherText(cylinder, key, text):
     text = ''.join(text)
     return text
 
-cylinder = loadCylinder("cylinderWiki.txt")
-key = [7,9,5,10,1,6,3,8,2,4]
-print(cipherText(cylinder, key, "Retreat Now"))
+
+def decipherText(cylinder, key, text):
+    """
+    Decrypte le texte avec un dictionnaire d'alphabet et la liste avec l'ordre dans lequel mettre les cylindres.
+    :param cylinder: Dictionnaire avec les cylindres composés de l'alphabet
+    :param key: Liste avec l'ordre dans lequel mettre les cylindres.
+    :param text: Chaine de caractère composée du texte à decrypter.
+    :return: Retourne la chaine de caractère decryptée avec la méthode de Jefferson.
+    """
+    if not keyOK(key, len(cylinder)): return 'Error'
+    text = [(cylinder[key[i]][(find(convertLetters(text)[i], cylinder[key[i]]))-6]) for i in range(len(cylinder)-1)]
+    text = ''.join(text)
+    return text
+
+#cylinder = loadCylinder("cylinderWiki.txt")
+#key = [7,9,5,10,1,6,3,8,2,4]
+#print(cipherText(cylinder, key, "Retreat Now"))
+#print('*********************************************')
+#text = 'GRMYSGBOAAMQGDPEYVWLDFDQQQZXXVMSZFS'
+#key = [12, 16, 29, 6, 33, 9, 22, 15, 20, 3, 1, 30, 32, 36, 19, 10, 35, 27, 25, 26, 2, 18, 31, 14, 34, 17, 23, 7, 8, 21, 4, 13, 11, 24, 28, 5]
+#cylinder = loadCylinder("MP-1ARI.txt")
+#print(decipherText(cylinder, key, text))
