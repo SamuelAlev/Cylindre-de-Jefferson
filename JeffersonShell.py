@@ -17,7 +17,7 @@ def convertLetters(text):
     :param text: Chaine de caractère à convertir.
     :return: Chaine de caractère convertie.
     """
-    return re.sub("[^A-Za-z]", '', text)
+    return re.sub("[^A-Za-z]", '', text).upper()
 
 def mix():
     """
@@ -31,14 +31,14 @@ def mix():
     S_Letter = ''.join(L_Letter)
     return S_Letter
 
-def createCylinder(file,n):
+def createCylinder(file, n):
     """
     Créé un fichier texte nommé en fonction de la variable "file" avec "n" nombre(s) de ligne(s)
     avec la chaine de caractère générée en retour de la fonction mix().
     :param file: Chaine de caractère qui fait office de nom de fichier.
     :param n: Entier qui définit le nombre de ligne à générer.
     """
-    with open(file + ".txt", "w") as f:
+    with open(file, "w") as f:
         for i in range(n):
             f.write(mix() + "\n")
 
@@ -50,43 +50,42 @@ def loadCylinder(file):
     :return: Dictionnaire avec la clé étant le numéro de ligne et la ligne correspondante étant contenu.
     """
     output = {}
-    with open(file + ".txt") as f:
+    with open(file) as f:
         liste = f.read().splitlines()
         for i in range(len(liste)):
             output[i+1] = liste[i]
     return output
 
-def keyOK(key,n):
+def keyOK(key, n):
     """
-    Vérifie lavalidité d'une clé pour le chiffrage ou déchiffrage du message
-    :param key: Un liste d'entiers positifs compris entre 1 et n
-    :param n: Un entier strictement positif
+    Vérifie lavalidité d'une clé pour le chiffrage ou déchiffrage du message.
+    :param key: Un liste d'entiers positifs compris entre 1 et n.
+    :param n: Un entier strictement positif.
     :return:
     """
     for x in key:
         if x < 1 or x > n:
-            print("clé invalide")
             return False
     return True
 
 def createKey(n):
     """
     Génère une clé sous forme d'une liste d'entiers positifs généré aléatoirement
-    et compris entre 1 et n
-    :param n: Limite de la range attribuée
-    :return: retourne la clé sous forme de liste
+    et compris entre 1 et n.
+    :param n: Limite de la range attribuée.
+    :return: Retourne la clé sous forme de liste.
     """
     liste = []
     for x in range(0,27):
         liste += [int(random.randrange(1,n))]
     return liste
 
-def find(letter,alphabet):
+def find(letter, alphabet):
     """
-    Renvoi la position d'une lettre dans l'alphabet rentré
-    :param letter: Lettre rentrée en paramètre
-    :param alphabet: Alphabet rentré en paramètre
-    :return: Retourne la position dans l'alphabet
+    Renvoi la position d'une lettre dans l'alphabet rentré.
+    :param letter: Lettre rentrée en paramètre.
+    :param alphabet: Alphabet rentré en paramètre.
+    :return: Retourne la position dans l'alphabet.
     """
     upLetter = letter.upper()
     position = 0
@@ -95,35 +94,40 @@ def find(letter,alphabet):
             return position
         else:
             position += 1
-    print("Lettre non présente")
 
 def shift(i):
     """
-    i est un entier compris entre 0 et 25
-    la fonction retournera i + 6 modulo de 26
-    :param i: Entier rentré en paramètre
-    :return: Retourne le résultat de l'opération
-    :param i: L'entier rentré en paramètre
-    :return: retourne le résultat de l'opération
+    i est un entier compris entre 0 et 25.
+    La fonction retournera i + 6 modulo de 26.
+    :param i: Entier rentré en paramètre.
+    :return: Retourne le résultat de l'opération.
     """
     return (i+6) % 26
 
-def cipherLetter(letter,alphabet):
-    """
-    Chiffre le message en décalant la lettre choisie de 6 crans
-    L'opération '%26' est présente pour éviter une sortie de liste
-    :param letter: Lettre rentrée en paramètre
-    :param alphabet: Alphabet rentré en paramètre
-    :return:
-    """
-    upLetter = letter.upper()
-    position = 0
-    for x in alphabet:
-        if x == upLetter:
-            return alphabet[shift(position)]
-        else:
-            position += 1
-    print("Lettre non présente")
 
-def cipherText(cylinder,key,text):
-    pass
+def cipherLetter(letter, alphabet):
+    """
+    Chiffre la letre en décalant la lettre choisie de 6 crans.
+    :param letter: Lettre rentrée en paramètre.
+    :param alphabet: Alphabet rentré en paramètre.
+    :return: Retourne la lettre chiffrée.
+    """
+    return alphabet[shift(find(letter, alphabet))]
+
+
+def cipherText(cylinder, key, text):
+    """
+    Crypte le texte avec un dictionnaire d'alphabet et la liste avec l'ordre dans lequel mettre les cylindres.
+    :param cylinder: Dictionnaire avec les cylindres composés de l'alphabet
+    :param key: Liste avec l'ordre dans lequel mettre les cylindres.
+    :param text: Chaine de caractère composée du texte à crypter.
+    :return: Retourne la chaine de caractère cryptée avec la méthode de Jefferson.
+    """
+    if not keyOK(key, len(cylinder)): return 'Error'
+    text = [(cylinder[key[i]][shift(find(convertLetters(text)[i], cylinder[key[i]]))]) for i in range(len(cylinder))]
+    text = ''.join(text)
+    return text
+
+cylinder = loadCylinder("cylinderWiki.txt")
+key = [7,9,5,10,1,6,3,8,2,4]
+print(cipherText(cylinder, key, "Retreat Now"))
